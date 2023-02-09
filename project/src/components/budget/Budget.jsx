@@ -1,10 +1,12 @@
+import Button from "../button/Button"
+
 function Budget() {
     return(
         <div>
             <div>
                 <p>Budget:</p> <span>$2000</span>
             </div>
-            <button>edit</button>
+            <Button text="Edit"/>
         </div>
     )
 }
