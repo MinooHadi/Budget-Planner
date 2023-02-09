@@ -1,0 +1,11 @@
+.input-main{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    line-height: 10px;
+}
+
+.inp {
+    padding: 3px;
+    border: 1px solid gray;
+}

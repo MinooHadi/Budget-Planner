@@ -1,7 +1,9 @@
+import "./../../assets/styles/remaining.css"
+
 function Remaining() {
     return (
-        <div>
-            <p>Remaining:</p> <span>$1040</span>
+        <div className="remaining-main">
+            <p>Remaining: <span>$1040</span></p> 
         </div>
     )
 }

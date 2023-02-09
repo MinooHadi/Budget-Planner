@@ -1,0 +1,9 @@
+.spentSoFar-main{
+    background-color: rgb(141, 141, 223);
+    width: 30%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 5px;
+}
