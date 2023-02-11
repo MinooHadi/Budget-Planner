@@ -12,8 +12,12 @@ export const store = React.createContext({
   setRemaining: () => {},
   spent: 0,
   setSpent: () => {},
-  deleting: undefined, 
+  deleting: undefined,
   setDeleting: () => {},
+  searchResult: [],
+  setSearchResult: () => {},
+  isSearching: false,
+  setIsSearching: () => {},
 });
 
 // provider
@@ -23,7 +27,9 @@ const ContextProvider = ({ children }) => {
   const [budget, setBudget] = useState(2000);
   const [remaining, setRemaining] = useState(2000);
   const [spent, setSpent] = useState(0);
-  const [deleting, setDeleting] = useState(undefined)
+  const [deleting, setDeleting] = useState(undefined);
+  const [searchResult, setSearchResult] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   return (
     <store.Provider
@@ -38,8 +44,12 @@ const ContextProvider = ({ children }) => {
         setRemaining,
         spent,
         setSpent,
-        deleting, 
+        deleting,
         setDeleting,
+        searchResult,
+        setSearchResult,
+        isSearching,
+        setIsSearching,
       }}
     >
       {children}

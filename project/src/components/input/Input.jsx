@@ -12,6 +12,9 @@ function Input(props) {
         style={props.style}
         ref={props.myRef}
         onInput={props.onInput}
+        onChange={props.onChange}
+        onFocus={props.onFocus}
+        onBlur={props.onBlur}
       />
     </div>
   );

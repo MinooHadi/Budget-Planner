@@ -5,7 +5,21 @@ import Input from "../input/Input";
 import "./../../assets/styles/expenses.css";
 
 function Expenses() {
-  const { addBudget, setAddBudget } = useContext(store);
+  const {
+    addBudget,
+    setAddBudget,
+    searchResult,
+    setSearchResult,
+    isSearching,
+    setIsSearching,
+  } = useContext(store);
+
+  function searchBudget(e) {
+    let results = addBudget.filter((item) =>
+      item.title.includes(e.target.value)
+    );
+    setSearchResult(results);
+  }
 
   return (
     <div className="expenses-main">
@@ -14,11 +28,34 @@ function Expenses() {
         type="search"
         placeholder="Type to search ..."
         style={{ marginTop: "-30px", width: "100%" }}
+        onChange={searchBudget}
+        onFocus={() => {
+          setIsSearching(true);
+          setSearchResult(addBudget);
+        }}
+        onBlur={(e) => {
+          setIsSearching(false);
+          e.target.value = ""
+        }}
       />
       <div>
-        {addBudget.map((item, i) => (
-          <Expense key={i} id={i} title={item.title} expense={item.expense} />
-        ))}
+        {isSearching
+          ? searchResult.map((item, i) => (
+              <Expense
+                key={i}
+                id={i}
+                title={item.title}
+                expense={item.expense}
+              />
+            ))
+          : addBudget.map((item, i) => (
+              <Expense
+                key={i}
+                id={i}
+                title={item.title}
+                expense={item.expense}
+              />
+            ))}
       </div>
     </div>
   );
