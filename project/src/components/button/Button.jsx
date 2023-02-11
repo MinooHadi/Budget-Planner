@@ -2,7 +2,7 @@ import "./../../assets/styles/button.css"
 
 function Button(props) {
     return(
-        <button className="btn"> {props.text} </button>
+        <button className="btn" onClick={props.onClick} > {props.text} </button>
     )
 }
 
