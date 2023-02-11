@@ -20,6 +20,10 @@ function ExpenseInput() {
   const cost = useRef(null);
 
   function addNewBuget() {
+    if (cost.current.value > remaining) {
+      alert("Your budget is not enough!!");
+      return
+    }
     let newExpense = {
       title: name.current.value,
       expense: cost.current.value,
