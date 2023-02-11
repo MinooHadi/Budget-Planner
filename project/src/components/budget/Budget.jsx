@@ -4,7 +4,7 @@ import { store } from "../context/Context";
 import "./../../assets/styles/budget.css";
 
 function Budget() {
-  const { editBudget, setEditBudget, budget, setBudget } = useContext(store);
+  const { editBudget, setEditBudget, budget, setBudget, remaining, setRemaining, spent, setSpent } = useContext(store);
 
   const expense = useRef(null);
 
@@ -20,6 +20,10 @@ function Budget() {
     setEditBudget(false);
     setBudget(expense.current.innerText);
   }
+
+  useEffect(() => {
+    setRemaining(+budget - +spent);
+  }, [budget])
 
   return (
     <div className="budget-main">

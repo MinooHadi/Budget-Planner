@@ -1,11 +1,17 @@
-import "./../../assets/styles/remaining.css"
+import { useContext } from "react";
+import { store } from "../context/Context";
+import "./../../assets/styles/remaining.css";
 
 function Remaining() {
-    return (
-        <div className="remaining-main">
-            <p>Remaining: <span>$1040</span></p> 
-        </div>
-    )
+  const { remaining, setRemaining } = useContext(store);
+
+  return (
+    <div className="remaining-main">
+      <p>
+        Remaining: $<span> {remaining} </span>
+      </p>
+    </div>
+  );
 }
 
-export default Remaining
+export default Remaining;
