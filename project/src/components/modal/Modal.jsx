@@ -5,12 +5,13 @@ import { store } from "../context/Context";
 import "./../../assets/styles/modal.css";
 
 function Modal() {
-  const { deleting, setDeleting, addBudget, setAddBudget } = useContext(store);
+  const { deleting, setDeleting, addBudget, setAddBudget, spent, setSpent } = useContext(store);
 
   function deleteItem(id) {
-    addBudget.splice(id, 1);
+    let deletingItem = addBudget.splice(id, 1);
     setAddBudget([...addBudget]);
-    setDeleting(undefined)
+    setDeleting(undefined);
+    setSpent(spent - +deletingItem[0].expense);
   }
 
   return ReactDOM.createPortal(
