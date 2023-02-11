@@ -12,6 +12,8 @@ export const store = React.createContext({
   setRemaining: () => {},
   spent: 0,
   setSpent: () => {},
+  deleting: undefined, 
+  setDeleting: () => {},
 });
 
 // provider
@@ -21,6 +23,7 @@ const ContextProvider = ({ children }) => {
   const [budget, setBudget] = useState(2000);
   const [remaining, setRemaining] = useState(2000);
   const [spent, setSpent] = useState(0);
+  const [deleting, setDeleting] = useState(undefined)
 
   return (
     <store.Provider
@@ -35,6 +38,8 @@ const ContextProvider = ({ children }) => {
         setRemaining,
         spent,
         setSpent,
+        deleting, 
+        setDeleting,
       }}
     >
       {children}

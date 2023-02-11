@@ -17,7 +17,7 @@ function Expenses() {
       />
       <div>
         {addBudget.map((item, i) => (
-          <Expense key={i} title={item.title} expense={item.expense} />
+          <Expense key={i} id={i} title={item.title} expense={item.expense} />
         ))}
       </div>
     </div>
