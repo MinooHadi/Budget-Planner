@@ -1,11 +1,13 @@
 .input-main{
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 100%;
     line-height: 10px;
 }
 
 .inp {
-    padding: 3px;
+    width: 70%;
+    padding: 5px;
     border: 1px solid gray;
+    outline: none;
 }
