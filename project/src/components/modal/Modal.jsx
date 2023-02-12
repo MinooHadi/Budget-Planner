@@ -5,11 +5,11 @@ import { store } from "../context/Context";
 import "./../../assets/styles/modal.css";
 
 function Modal() {
-  const { deleting, setDeleting, addBudget, setAddBudget, spent, setSpent } = useContext(store);
+  const { deleting, setDeleting, addExpense, setAddExpense, spent, setSpent } = useContext(store);
 
   function deleteItem(id) {
-    let deletingItem = addBudget.splice(id, 1);
-    setAddBudget([...addBudget]);
+    let deletingItem = addExpense.splice(id, 1);
+    setAddExpense([...addExpense]);
     setDeleting(undefined);
     setSpent(spent - +deletingItem[0].expense);
   }

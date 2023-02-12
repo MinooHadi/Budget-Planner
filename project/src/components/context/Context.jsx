@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 //store
 export const store = React.createContext({
-  addBudget: [],
-  setAddBudget: () => {},
+  addExpense: [],
+  setAddExpense: () => {},
   editBudget: false,
   setEditBudget: () => {},
   budget: 2000,
@@ -22,7 +22,7 @@ export const store = React.createContext({
 
 // provider
 const ContextProvider = ({ children }) => {
-  const [addBudget, setAddBudget] = useState([]);
+  const [addExpense, setAddExpense] = useState([]);
   const [editBudget, setEditBudget] = useState(false);
   const [budget, setBudget] = useState(2000);
   const [remaining, setRemaining] = useState(2000);
@@ -34,8 +34,8 @@ const ContextProvider = ({ children }) => {
   return (
     <store.Provider
       value={{
-        addBudget,
-        setAddBudget,
+        addExpense,
+        setAddExpense,
         editBudget,
         setEditBudget,
         budget,

@@ -6,8 +6,8 @@ import "./../../assets/styles/expenseInput.css";
 
 function ExpenseInput() {
   const {
-    addBudget,
-    setAddBudget,
+    addExpense,
+    setAddExpense,
     budget,
     setBudget,
     remaining,
@@ -29,7 +29,7 @@ function ExpenseInput() {
       expense: cost.current.value,
     };
 
-    setAddBudget([...addBudget, newExpense]);
+    setAddExpense([...addExpense, newExpense]);
     setSpent((prevState) => prevState + +cost.current.value);
   }
 

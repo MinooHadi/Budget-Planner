@@ -6,8 +6,8 @@ import "./../../assets/styles/expenses.css";
 
 function Expenses() {
   const {
-    addBudget,
-    setAddBudget,
+    addExpense,
+    setAddExpense,
     searchResult,
     setSearchResult,
     isSearching,
@@ -15,7 +15,7 @@ function Expenses() {
   } = useContext(store);
 
   function searchBudget(e) {
-    let results = addBudget.filter((item) =>
+    let results = addExpense.filter((item) =>
       item.title.includes(e.target.value)
     );
     setSearchResult(results);
@@ -31,7 +31,7 @@ function Expenses() {
         onChange={searchBudget}
         onFocus={() => {
           setIsSearching(true);
-          setSearchResult(addBudget);
+          setSearchResult(addExpense);
         }}
         onBlur={(e) => {
           setIsSearching(false);
@@ -48,7 +48,7 @@ function Expenses() {
                 expense={item.expense}
               />
             ))
-          : addBudget.map((item, i) => (
+          : addExpense.map((item, i) => (
               <Expense
                 key={i}
                 id={i}
