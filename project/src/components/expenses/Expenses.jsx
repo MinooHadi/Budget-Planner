@@ -1,9 +1,18 @@
 import { useContext } from "react";
+import styled from "styled-components";
 import { store } from "../context/Context";
 import Expense from "../expense/Expense";
 import Input from "../input/Input";
-import "./../../assets/styles/expenses.css";
 
+//! styled component ........................................................................................................................
+const ExpensesMain = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+`;
+
+//? Expense component ........................................................................................................................
 function Expenses() {
   const { state, dispatch } = useContext(store);
 
@@ -18,7 +27,7 @@ function Expenses() {
   }
 
   return (
-    <div className="expenses-main">
+    <ExpensesMain className="expenses-main">
       <h3>Expenses</h3>
       <Input
         type="search"
@@ -61,7 +70,7 @@ function Expenses() {
               />
             ))}
       </div>
-    </div>
+    </ExpensesMain>
   );
 }
 

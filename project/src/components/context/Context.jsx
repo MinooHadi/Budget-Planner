@@ -1,6 +1,7 @@
 import React, { useReducer } from "react";
 import reducer from "../reducer/Reducer";
 
+//* initial states ........................................................................................................................
 const initialState = {
   addExpense: [],
   editBudget: false,
@@ -11,13 +12,14 @@ const initialState = {
   searchResult: [],
   isSearching: false,
 };
-//store
+
+//* store ........................................................................................................................
 export const store = React.createContext({
   state: initialState,
   dispatch: (dispatch) => {},
 });
 
-// provider
+//* provider ........................................................................................................................
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 

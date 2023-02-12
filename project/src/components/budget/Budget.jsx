@@ -1,8 +1,30 @@
 import { useContext, useEffect, useRef } from "react";
+import styled from "styled-components";
 import Button from "../button/Button";
 import { store } from "../context/Context";
-import "./../../assets/styles/budget.css";
 
+//! styled component ........................................................................................................................
+const BudgetMain = styled.div`
+  background-color: plum;
+  width: 30%;
+  display: flex;
+  height: 4rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 5px;
+`;
+
+const BudgetDesc = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Span = styled.span`
+  padding: 5px;
+`;
+
+//? Budget component ........................................................................................................................
 function Budget() {
   const { state, dispatch } = useContext(store);
 
@@ -30,23 +52,23 @@ function Budget() {
   }
 
   return (
-    <div className="budget-main">
-      <div className="budget-desc">
+    <BudgetMain className="budget-main">
+      <BudgetDesc className="budget-desc">
         <p>Budget: $</p>
         {state.editBudget ? (
-          <span ref={expense} contentEditable>
+          <Span ref={expense} contentEditable>
             {state.budget}
-          </span>
+          </Span>
         ) : (
-          <span ref={expense}> {state.budget} </span>
+          <Span ref={expense}> {state.budget} </Span>
         )}
-      </div>
+      </BudgetDesc>
       {state.editBudget ? (
         <Button text="Save" onClick={saveBudgetBtn} />
       ) : (
         <Button text="Edit" onClick={editBudgetBtn} />
       )}
-    </div>
+    </BudgetMain>
   );
 }
 

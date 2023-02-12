@@ -2,8 +2,26 @@ import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import Button from "../button/Button";
 import { store } from "../context/Context";
-import "./../../assets/styles/modal.css";
+import styled from "styled-components";
 
+//! styled component ........................................................................................................................
+const ModalMain = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px gray;
+`;
+
+const ModalBtnDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+//? Modal component ........................................................................................................................
 function Modal() {
   const { state, dispatch } = useContext(store);
 
@@ -22,12 +40,12 @@ function Modal() {
 
   return ReactDOM.createPortal(
     <>
-      <div className="modal-main">
+      <ModalMain className="modal-main">
         <p>
           {" "}
           Are you sure to delete <b>{state.deleting.title}</b> ?
         </p>
-        <div className="modal-btn-div">
+        <ModalBtnDiv className="modal-btn-div">
           <Button text="Yes" onClick={() => deleteItem(state.deleting.id)} />
           <Button
             text="No"
@@ -35,8 +53,8 @@ function Modal() {
               dispatch({ type: "CANCEL-MODAL", payload: undefined })
             }
           />
-        </div>
-      </div>
+        </ModalBtnDiv>
+      </ModalMain>
     </>,
     document.getElementById("modal-root")
   );
