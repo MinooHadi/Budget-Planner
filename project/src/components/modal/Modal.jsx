@@ -23,9 +23,12 @@ function Modal() {
   return ReactDOM.createPortal(
     <>
       <div className="modal-main">
-        <p> Are you sure to delete this item?</p>
+        <p>
+          {" "}
+          Are you sure to delete <b>{state.deleting.title}</b> ?
+        </p>
         <div className="modal-btn-div">
-          <Button text="Yes" onClick={() => deleteItem(state.deleting)} />
+          <Button text="Yes" onClick={() => deleteItem(state.deleting.id)} />
           <Button
             text="No"
             onClick={() =>

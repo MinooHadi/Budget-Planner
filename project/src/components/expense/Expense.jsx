@@ -8,7 +8,10 @@ function Expense(props) {
   function showDeleteModal() {
     dispatch({
       type: "DELETING",
-      payload: props.id,
+      payload: {
+        id: props.id,
+        title: props.title
+      }
     });
   }
 
