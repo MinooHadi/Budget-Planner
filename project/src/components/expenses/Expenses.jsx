@@ -5,20 +5,16 @@ import Input from "../input/Input";
 import "./../../assets/styles/expenses.css";
 
 function Expenses() {
-  const {
-    addExpense,
-    setAddExpense,
-    searchResult,
-    setSearchResult,
-    isSearching,
-    setIsSearching,
-  } = useContext(store);
+  const { state, dispatch } = useContext(store);
 
   function searchBudget(e) {
-    let results = addExpense.filter((item) =>
+    let results = state.addExpense.filter((item) =>
       item.title.includes(e.target.value)
     );
-    setSearchResult(results);
+    dispatch({
+      type: "SEARCH-RESULT",
+      payload: results,
+    });
   }
 
   return (
@@ -30,17 +26,25 @@ function Expenses() {
         style={{ marginTop: "-30px", width: "100%" }}
         onChange={searchBudget}
         onFocus={() => {
-          setIsSearching(true);
-          setSearchResult(addExpense);
+          dispatch({
+            type: "FOCUSED",
+            payload: {
+              isSearching: true,
+              searchResult: state.addExpense,
+            },
+          });
         }}
         onBlur={(e) => {
-          setIsSearching(false);
-          e.target.value = ""
+          dispatch({
+            type: "BLURED",
+            payload: false,
+          });
+          e.target.value = "";
         }}
       />
       <div>
-        {isSearching
-          ? searchResult.map((item, i) => (
+        {state.isSearching
+          ? state.searchResult.map((item, i) => (
               <Expense
                 key={i}
                 id={i}
@@ -48,7 +52,7 @@ function Expenses() {
                 expense={item.expense}
               />
             ))
-          : addExpense.map((item, i) => (
+          : state.addExpense.map((item, i) => (
               <Expense
                 key={i}
                 id={i}

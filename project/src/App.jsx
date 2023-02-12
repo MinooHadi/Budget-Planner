@@ -7,14 +7,17 @@ import Header from "./components/header/Header";
 import Modal from "./components/modal/Modal";
 
 function App() {
-  const { deleting, setDeleting } = useContext(store);
+  const { state } = useContext(store);
 
   return (
-    <div className="App" style={deleting !== undefined ? {filter: "blur(5px)"} : null}>
+    <div
+      className="App"
+      style={state.deleting !== undefined ? { filter: "blur(5px)" } : null}
+    >
       <Header />
       <Expenses />
       <ExpenseInput />
-      {deleting !== undefined && <Modal/>}
+      {state.deleting !== undefined && <Modal />}
     </div>
   );
 }

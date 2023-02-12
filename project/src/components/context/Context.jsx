@@ -1,59 +1,28 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
+import reducer from "../reducer/Reducer";
 
+const initialState = {
+  addExpense: [],
+  editBudget: false,
+  budget: 2000,
+  remaining: 2000,
+  spent: 0,
+  deleting: undefined,
+  searchResult: [],
+  isSearching: false,
+};
 //store
 export const store = React.createContext({
-  addExpense: [],
-  setAddExpense: () => {},
-  editBudget: false,
-  setEditBudget: () => {},
-  budget: 2000,
-  setBudget: () => {},
-  remaining: 2000,
-  setRemaining: () => {},
-  spent: 0,
-  setSpent: () => {},
-  deleting: undefined,
-  setDeleting: () => {},
-  searchResult: [],
-  setSearchResult: () => {},
-  isSearching: false,
-  setIsSearching: () => {},
+  state: initialState,
+  dispatch: (dispatch) => {},
 });
 
 // provider
 const ContextProvider = ({ children }) => {
-  const [addExpense, setAddExpense] = useState([]);
-  const [editBudget, setEditBudget] = useState(false);
-  const [budget, setBudget] = useState(2000);
-  const [remaining, setRemaining] = useState(2000);
-  const [spent, setSpent] = useState(0);
-  const [deleting, setDeleting] = useState(undefined);
-  const [searchResult, setSearchResult] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <store.Provider
-      value={{
-        addExpense,
-        setAddExpense,
-        editBudget,
-        setEditBudget,
-        budget,
-        setBudget,
-        remaining,
-        setRemaining,
-        spent,
-        setSpent,
-        deleting,
-        setDeleting,
-        searchResult,
-        setSearchResult,
-        isSearching,
-        setIsSearching,
-      }}
-    >
-      {children}
-    </store.Provider>
+    <store.Provider value={{ state, dispatch }}>{children}</store.Provider>
   );
 };
 

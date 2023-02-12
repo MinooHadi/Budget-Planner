@@ -4,40 +4,44 @@ import { store } from "../context/Context";
 import "./../../assets/styles/budget.css";
 
 function Budget() {
-  const { editBudget, setEditBudget, budget, setBudget, remaining, setRemaining, spent, setSpent } = useContext(store);
+  const { state, dispatch } = useContext(store);
 
   const expense = useRef(null);
 
   function editBudgetBtn() {
-    setEditBudget(true);
+    dispatch({
+      type: "EDIT-BUDGET",
+      payload: true,
+    });
   }
 
   useEffect(() => {
     expense.current.focus();
-  }, [editBudget]);
+  }, [state.editBudget]);
 
   function saveBudgetBtn() {
-    setEditBudget(false);
-    setBudget(expense.current.innerText);
+    dispatch({
+      type: "SAVE-BUDGET",
+      payload: {
+        editBudget: false,
+        budget: +expense.current.innerText,
+      },
+    });
   }
-
-  useEffect(() => {
-    setRemaining(+budget - +spent);
-  }, [budget])
 
   return (
     <div className="budget-main">
       <div className="budget-desc">
         <p>Budget: $</p>
-        {editBudget ? (
+        {state.editBudget ? (
           <span ref={expense} contentEditable>
-            {budget}
+            {state.budget}
           </span>
         ) : (
-          <span ref={expense}> {budget} </span>
+          <span ref={expense}> {state.budget} </span>
         )}
       </div>
-      {editBudget ? (
+      {state.editBudget ? (
         <Button text="Save" onClick={saveBudgetBtn} />
       ) : (
         <Button text="Edit" onClick={editBudgetBtn} />

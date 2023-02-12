@@ -3,12 +3,12 @@ import { store } from "../context/Context";
 import "./../../assets/styles/remaining.css";
 
 function Remaining() {
-  const { remaining, setRemaining } = useContext(store);
+  const { state } = useContext(store);
 
   return (
     <div className="remaining-main">
       <p>
-        Remaining: $<span> {remaining} </span>
+        Remaining: $<span> {state.remaining} </span>
       </p>
     </div>
   );

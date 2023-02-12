@@ -5,13 +5,19 @@ import { store } from "../context/Context";
 import "./../../assets/styles/modal.css";
 
 function Modal() {
-  const { deleting, setDeleting, addExpense, setAddExpense, spent, setSpent } = useContext(store);
+  const { state, dispatch } = useContext(store);
 
   function deleteItem(id) {
-    let deletingItem = addExpense.splice(id, 1);
-    setAddExpense([...addExpense]);
-    setDeleting(undefined);
-    setSpent(spent - +deletingItem[0].expense);
+    let deletingItem = state.addExpense.splice(id, 1);
+    dispatch({
+      type: "ITEM-DELETED",
+      payload: {
+        addExpense: [...state.addExpense],
+        deleting: undefined,
+        spent: state.spent - +deletingItem[0].expense,
+        remaining: state.remaining + +deletingItem[0].expense,
+      },
+    });
   }
 
   return ReactDOM.createPortal(
@@ -19,8 +25,13 @@ function Modal() {
       <div className="modal-main">
         <p> Are you sure to delete this item?</p>
         <div className="modal-btn-div">
-          <Button text="Yes" onClick={() => deleteItem(deleting)} />
-          <Button text="No" onClick={() => setDeleting(undefined)} />
+          <Button text="Yes" onClick={() => deleteItem(state.deleting)} />
+          <Button
+            text="No"
+            onClick={() =>
+              dispatch({ type: "CANCEL-MODAL", payload: undefined })
+            }
+          />
         </div>
       </div>
     </>,

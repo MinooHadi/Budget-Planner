@@ -5,39 +5,35 @@ import Input from "../input/Input";
 import "./../../assets/styles/expenseInput.css";
 
 function ExpenseInput() {
-  const {
-    addExpense,
-    setAddExpense,
-    budget,
-    setBudget,
-    remaining,
-    setRemaining,
-    spent,
-    setSpent,
-  } = useContext(store);
+  const { state, dispatch } = useContext(store);
 
   const name = useRef(null);
   const cost = useRef(null);
 
   function addNewBuget() {
-    if (cost.current.value > remaining) {
+    if (cost.current.value > state.remaining) {
       alert("Your budget is not enough!!");
-      return
+      return;
     }
+
     let newExpense = {
       title: name.current.value,
       expense: cost.current.value,
     };
 
-    setAddExpense([...addExpense, newExpense]);
-    setSpent((prevState) => prevState + +cost.current.value);
+    dispatch({
+      type: "addExpense",
+      payload: {
+        newExpense: newExpense,
+        newSpent: +cost.current.value,
+      },
+    });
   }
 
   useEffect(() => {
-    setRemaining(+budget - +spent);
     name.current.value = "";
     cost.current.value = "";
-  }, [spent]);
+  }, [state.spent]);
 
   return (
     <div className="expenseInput-main">
