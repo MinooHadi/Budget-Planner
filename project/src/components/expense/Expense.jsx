@@ -12,6 +12,7 @@ const ExpenseMain = styled.div`
   font-size: 18px;
   height: 40px;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 const ExpenseDiv = styled.div`

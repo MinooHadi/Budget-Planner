@@ -12,6 +12,19 @@ const ExpensesMain = styled.div`
   padding: 20px;
 `;
 
+const ExpensesDiv = styled.div`
+  height: 240px;
+  overflow-y: scroll;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
 //? Expense component ........................................................................................................................
 function Expenses() {
   const { state, dispatch } = useContext(store);
@@ -51,7 +64,7 @@ function Expenses() {
           e.target.value = "";
         }}
       />
-      <div>
+      <ExpensesDiv>
         {state.isSearching
           ? state.searchResult.map((item, i) => (
               <Expense
@@ -69,7 +82,7 @@ function Expenses() {
                 expense={item.expense}
               />
             ))}
-      </div>
+      </ExpensesDiv>
     </ExpensesMain>
   );
 }
